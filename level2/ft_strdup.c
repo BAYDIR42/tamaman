@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 22:16:57 by bjouini           #+#    #+#             */
-/*   Updated: 2018/02/28 07:21:01 by bjouini          ###   ########.fr       */
+/*   Created: 2018/02/28 09:48:07 by bjouini           #+#    #+#             */
+/*   Updated: 2018/02/28 09:48:11 by bjouini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-int	ft_strlen(char *str)
+#include <stdlib.h>
+
+char	*ft_strdup(char *src)
 {
-	int i;
+	int 	i;
+	char	*tmp;
 
 	i = 0;
-	while (str[i])
+	while (src[i])
 		i++;
-	return (i);
+	tmp = (char*)malloc(sizeof(char) * (i + 1));
+	while (i >= 0)
+	{
+		tmp[i] = src[i];
+		i--;
+	}
+	return (tmp);
 }

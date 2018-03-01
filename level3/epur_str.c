@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rot_13.c                                        :+:      :+:    :+:   */
+/*   epur_str.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 22:16:31 by bjouini           #+#    #+#             */
-/*   Updated: 2018/03/01 05:50:49 by bjouini          ###   ########.fr       */
+/*   Created: 2018/03/01 19:07:13 by bjouini           #+#    #+#             */
+/*   Updated: 2018/03/01 19:27:40 by bjouini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,28 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_rot_13(char *str)
+int		main(int ac, char **av)
 {
-	int i;
+	int		i;
+	char	*arg;
 
-	i = 0;
-	while (str[i])
+	if (ac == 2)
 	{
-		if ((str[i] >= 'A' && str[i] <= 'M') ||
-				(str[i] >= 'a' && str[i] <= 'm'))
-			str[i] += 13;
-		else if ((str[i] >= 'n' && str[i] <= 'z') ||
-				(str[i] >= 'n' && str[i] <= 'z'))
-			str[i] -= 13;
-		ft_putchar(str[i]);
-		i++;
+		i = -1;
+		arg = av[1];
+		while (*arg != '\0')
+		{
+			while (*arg == ' ' || *arg == '\t')
+				arg++;
+			if (i != -1 && *arg != '\0')
+				ft_putchar(' ');
+			i = 0;
+			while (arg[i] != '\0' && arg[i] != ' ' && arg[i] != '\t')
+				i++;
+			ft_putchar(*arg);
+			arg += i;
+		}
 	}
-}
-
-int		main(int argc, char **argv)
-{
-	if (argc == 2)
-		ft_rot_13(argv[1]);
-	else
-		ft_putchar('\n');
+	ft_putchar('\n');
 	return (0);
 }

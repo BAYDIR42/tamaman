@@ -1,22 +1,33 @@
-/* ************************************************************************** */
+* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 22:16:57 by bjouini           #+#    #+#             */
-/*   Updated: 2018/02/28 07:21:01 by bjouini          ###   ########.fr       */
+/*   Created: 2018/03/01 10:59:52 by bjouini           #+#    #+#             */
+/*   Updated: 2018/03/01 11:20:46 by bjouini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-int	ft_strlen(char *str)
+char	*ft_strrev(char *str)
 {
-	int i;
+	char *begin;
+	char *end;
+	char tmp;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	begin = str;
+	end = str;
+	while (*end != '\0')
+		end++;
+	end--;
+	while (begin < end)
+	{
+		tmp = *end;
+		*end = *begin;
+		*begin = tmp;
+		end--;
+		begin++;
+	}
+	return (str);
 }

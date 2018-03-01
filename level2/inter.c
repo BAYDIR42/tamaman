@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rot_13.c                                        :+:      :+:    :+:   */
+/*   inter.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 22:16:31 by bjouini           #+#    #+#             */
-/*   Updated: 2018/03/01 05:50:49 by bjouini          ###   ########.fr       */
+/*   Created: 2018/03/01 13:31:31 by bjouini           #+#    #+#             */
+/*   Updated: 2018/03/01 13:39:32 by bjouini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,49 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_rot_13(char *str)
+int		ft_check(char *str, char c, int index)
+{
+	int n;
+
+	n = 0;
+	while (n < index)
+	{
+		if (str[n] == c)
+			return (0);
+		n++;
+	}
+	return (1);
+}
+
+void	ft_inter(char *s1, char *s2)
 {
 	int i;
+	int j;
 
 	i = 0;
-	while (str[i])
+	while (s1[i])
 	{
-		if ((str[i] >= 'A' && str[i] <= 'M') ||
-				(str[i] >= 'a' && str[i] <= 'm'))
-			str[i] += 13;
-		else if ((str[i] >= 'n' && str[i] <= 'z') ||
-				(str[i] >= 'n' && str[i] <= 'z'))
-			str[i] -= 13;
-		ft_putchar(str[i]);
+		if (ft_check(s1, s1[i], i) == 1)
+		{
+			j = 0;
+			while (s2[j])
+			{
+				if (s2[j] == s1[i])
+				{
+					ft_putchar(s1[i]);
+					break ;
+				}
+				j++;
+			}
+		}
 		i++;
 	}
 }
 
-int		main(int argc, char **argv)
+int		main(int ac, char **av)
 {
-	if (argc == 2)
-		ft_rot_13(argv[1]);
-	else
-		ft_putchar('\n');
+	if (ac == 3)
+		ft_inter(av[1], av[2]);
+	ft_putchar('\n');
 	return (0);
 }

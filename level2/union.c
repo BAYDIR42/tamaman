@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rot_13.c                                        :+:      :+:    :+:   */
+/*   union.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 22:16:31 by bjouini           #+#    #+#             */
-/*   Updated: 2018/03/01 05:50:49 by bjouini          ###   ########.fr       */
+/*   Created: 2018/03/01 08:08:30 by bjouini           #+#    #+#             */
+/*   Updated: 2018/03/01 08:13:59 by bjouini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,37 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_rot_13(char *str)
+void	ft_union(char *s1, char *s2)
 {
-	int i;
+	int	tab[256] = {0};
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (s1[a])
 	{
-		if ((str[i] >= 'A' && str[i] <= 'M') ||
-				(str[i] >= 'a' && str[i] <= 'm'))
-			str[i] += 13;
-		else if ((str[i] >= 'n' && str[i] <= 'z') ||
-				(str[i] >= 'n' && str[i] <= 'z'))
-			str[i] -= 13;
-		ft_putchar(str[i]);
+		if (tab[(int)s1[i]] == 0)
+		{
+			tab[(int)s1[i]] = 1;
+			ft_putchar(s1[i]);
+		}
+		i++;
+	}
+	i = 0;
+	while (s2[i])
+	{
+		if (tab[(int)s2[i]] == 0)
+		{
+			tab[(int)s2[i]] = 1;
+			ft_putchar(s2[i]);
+		}
 		i++;
 	}
 }
 
 int		main(int argc, char **argv)
 {
-	if (argc == 2)
-		ft_rot_13(argv[1]);
-	else
-		ft_putchar('\n');
+	if (argc == 3)
+		ft_union(av[1], av[2]);
+	ft_putchar('\n');
 	return (0);
 }

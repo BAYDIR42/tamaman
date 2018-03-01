@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   max.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 22:16:57 by bjouini           #+#    #+#             */
-/*   Updated: 2018/02/28 07:21:01 by bjouini          ###   ########.fr       */
+/*   Created: 2018/03/01 10:53:37 by bjouini           #+#    #+#             */
+/*   Updated: 2018/03/01 10:56:22 by bjouini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-int	ft_strlen(char *str)
+int	max(int *tab, unsigned int len)
 {
-	int i;
+	int max;
+	unsigned int i;
 
+	if (len == 0)
+		return (0);
+	max = tab[0];
 	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	while (++i < len)
+		if (tab[i] > max)
+			max = tab[i];
+	return (max)
 }

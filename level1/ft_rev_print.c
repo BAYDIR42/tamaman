@@ -1,55 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_rev_print.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/26 22:16:09 by bjouini           #+#    #+#             */
+/*   Updated: 2018/02/28 04:52:06 by bjouini          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
+
 void	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	write (1, &c, 1);
 }
 
-void	ft_putstr(char *str)
+void	ft_putstr_rev(char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i])
-	{
-		ft_putchar(str[i]);
 		i++;
-	}
-}
-
-void	ft_swap(char *a, char *b)
-{
-	int tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	*ft_rev_print(char *str)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	j = 0;
-	while (i < j)
+	while (i > 0)
 	{
 		i--;
-		ft_swap((&str[j]), (&str[i]));
-		j++;
+		ft_putchar(str[i]);
 	}
-	return (str);
 }
 
 int		main(int argc, char **argv)
 {
 	if (argc == 2)
 	{
-		ft_putstr(ft_rev_print(argv[1]));
+		ft_putstr(argv[1]);
 		ft_putchar('\n');
 	}
 	else

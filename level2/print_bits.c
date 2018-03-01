@@ -1,22 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   print_bits.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 22:16:57 by bjouini           #+#    #+#             */
-/*   Updated: 2018/02/28 07:21:01 by bjouini          ###   ########.fr       */
+/*   Created: 2018/03/01 09:45:56 by bjouini           #+#    #+#             */
+/*   Updated: 2018/03/01 10:52:17 by bjouini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-int	ft_strlen(char *str)
+#include <unistd.h>
+
+void	ft_putchar(char c)
 {
-	int i;
+	write(1, &c, 1);
+}
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+void	print_bits(unsigned char octet)
+{
+	int oct;
+	int div;
+
+	div = 128;
+	oct = octet;
+	while (div != 0)
+	{
+		if (div <= oct)
+		{
+			ft_putchar('1');
+			oct = oct % div;
+		}
+		else
+			ft_putchar('0');
+		div = div / 2;
+	}
 }

@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   reverse_bits.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 22:16:57 by bjouini           #+#    #+#             */
-/*   Updated: 2018/02/28 07:21:01 by bjouini          ###   ########.fr       */
+/*   Created: 2018/03/01 08:02:53 by bjouini           #+#    #+#             */
+/*   Updated: 2018/03/01 08:04:38 by bjouini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-int	ft_strlen(char *str)
+unsigned char	reverse_bits(unsigned char octet)
 {
-	int i;
+	unsigned char result;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	result = octet;
+	while (octet)
+	{
+		result <<= 1;
+		result |= octet & 1;
+		octet >>= 1;
+	}
+	result <<= 1;
+	return (result);
 }

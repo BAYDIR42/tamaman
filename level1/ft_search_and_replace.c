@@ -1,57 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_search_and_replace.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/28 04:22:50 by bjouini           #+#    #+#             */
+/*   Updated: 2018/02/28 04:26:42 by bjouini          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
 void	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	write (1, &c, 1);
 }
 
-int		ft_strlen(char *str)
+void	ft_replace(char *str, char a, char b)
 {
 	int i;
 
 	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-void	ft_putstr(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
-		ft_putchar(str[i]);
+		if (str[i] == a)
+			ft_putchar(b);
+		else
+			ft_putchar(str[i]);
 		i++;
 	}
-}
-
-char 	ft_search_and_replace(char *s1, char *s2, char *s3)
-{
-	int i;
-
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		if (s1[i] == s2[0])
-			s1[i] = s3[0];
-		i++;
-	}
-	return (s1);
 }
 
 int		main(int argc, char **argv)
 {
-	char	*tmp;
-
 	if (argc == 4)
 	{
-		if (ft_strlen(argv[2]) == 1 && ft_strlen(argv[3]) == 1)
-		{
-			tmp = ft_search_and_replace(argv[1], argv[2], argv[3]);
-			ft_putstr(tmp);
-		}
+		if (!(argv[3][1] != '\0' || argv[2][1] != '\0'))
+			ft_replace(argv[1], argv[2][0], argv[3][0]);
 	}
 	ft_putchar('\n');
 	return (0);

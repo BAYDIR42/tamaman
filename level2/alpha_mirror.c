@@ -1,22 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   alpha_mirror.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 22:16:57 by bjouini           #+#    #+#             */
-/*   Updated: 2018/02/28 07:21:01 by bjouini          ###   ########.fr       */
+/*   Created: 2018/03/01 09:01:21 by bjouini           #+#    #+#             */
+/*   Updated: 2018/03/01 09:28:09 by bjouini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-int	ft_strlen(char *str)
+#include <unistd.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	alpha_mirror(char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i])
-		i++;
-	return (i);
+	{
+		if (str[i] >= 'a' && str[i] <= 'z')
+			ft_putchar('m' - (str[i] - 'n'));
+		else if (str[i] >= 'A' && str[i] <= 'Z')
+			ft_putchar('M' - (str[i] - 'N'));
+		else
+			ft_putchar(str[i]);
+			i++;
+	}
+}
+
+int		main(int argc, char **argv)
+{
+	if (argc == 2)
+	{
+		alpha_mirror(argv[1]);
+		ft_putchar('\n');
+	}
+	else
+		ft_putchar('\n');
+	return (0);
 }

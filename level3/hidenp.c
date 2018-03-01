@@ -1,22 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   hidenp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 22:16:57 by bjouini           #+#    #+#             */
-/*   Updated: 2018/02/28 07:21:01 by bjouini          ###   ########.fr       */
+/*   Created: 2018/03/01 14:25:21 by bjouini           #+#    #+#             */
+/*   Updated: 2018/03/01 14:30:57 by bjouini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-int	ft_strlen(char *str)
+#include <unistd.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+int		main(int ac, char **av)
 {
 	int i;
+	int j;
 
+	if (ac != 3)
+	{
+		ft_putchar('\n');
+		return (0);
+	}
 	i = 0;
-	while (str[i])
+	j = 0;
+	while (av[2][i] != '\0' && av[1][j] != '\0')
+	{
+		if (av[1][j] == av[2][i])
+			j++;
 		i++;
-	return (i);
+	}
+	ft_putchar(*(av[1][j] == '\0' ? "1" : "0"));
+	return (0);
 }

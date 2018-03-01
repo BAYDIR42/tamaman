@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rot_13.c                                        :+:      :+:    :+:   */
+/*   wdmatch.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjouini <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 22:16:31 by bjouini           #+#    #+#             */
-/*   Updated: 2018/03/01 05:50:49 by bjouini          ###   ########.fr       */
+/*   Created: 2018/02/28 10:08:55 by bjouini           #+#    #+#             */
+/*   Updated: 2018/02/28 10:29:40 by bjouini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,29 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_rot_13(char *str)
+static char	*wdmatch(char *s1, const char *s2)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
+	while (*s1 != '\0' && *s2 != '\0')
 	{
-		if ((str[i] >= 'A' && str[i] <= 'M') ||
-				(str[i] >= 'a' && str[i] <= 'm'))
-			str[i] += 13;
-		else if ((str[i] >= 'n' && str[i] <= 'z') ||
-				(str[i] >= 'n' && str[i] <= 'z'))
-			str[i] -= 13;
-		ft_putchar(str[i]);
-		i++;
+		if (*s1 == *s2)
+			s1++;
+		s2++;
 	}
+	if (*s1 == '\0')
+		return (s1);
+	return (NULL);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	if (argc == 2)
-		ft_rot_13(argv[1]);
-	else
-		ft_putchar('\n');
+	char *tmp;
+
+	if (argc == 3)
+	{
+		tmp = wdmatch(argv[1], argv[2]);
+		if (tmp != NULL)
+			write(1, argv[1], tmp - argv[1]);
+	}
+	ft_putchar('\n');
 	return (0);
 }
